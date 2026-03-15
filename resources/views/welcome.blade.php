@@ -9,5 +9,6 @@
     </head>
     <body>
         <h1>Bem vindo ao Report</h1>
+        <a href="{{ route('schools.index')}}">Listar as escolas</a>
     </body>
 </html>
