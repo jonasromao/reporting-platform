@@ -1,4 +1,7 @@
-<div>
+@extends('layouts.admin')
+
+@section('content')
+
     <h2>Cadastrar Escola</h2>
 
     <form action="{{ route('schools.store') }}" method="POST">
@@ -11,4 +14,5 @@
     
         <button type="submit">Cadastrar</button>
     </form>
-</div>
+    
+@endsection
