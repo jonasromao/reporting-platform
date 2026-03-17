@@ -32,7 +32,7 @@ class SchoolController extends Controller
         ]);   
 
         // Redirecionar o usuário, enviar mensagem de sucesso
-        return redirect()->route('schools.index');
+        return redirect()->route('schools.index')->with('success', 'Escola cadastrada com sucesso!');
     }
 }
 
