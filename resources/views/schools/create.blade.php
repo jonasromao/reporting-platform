@@ -4,6 +4,8 @@
 
     <h2>Cadastrar Escola</h2>
 
+    <a href="{{ route('schools.index') }}">Listar</a><br><br>
+
     <form action="{{ route('schools.store') }}" method="POST">
         @csrf
         @method('POST')   

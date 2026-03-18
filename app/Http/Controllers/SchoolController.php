@@ -16,6 +16,14 @@ class SchoolController extends Controller
         return view('schools.index', ['schools' => $schools]);
     }
 
+    // visualizar a escola
+    public function show (School $school)
+    {
+        // Carregar a view
+        return view('schools.show', ['school' => $school]);
+    }
+
+
     public function create()
     {
         // Apresentar formulário de cadastro

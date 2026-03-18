@@ -14,5 +14,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // Schools
 Route::get('/index-school', [SchoolController::class, 'index'])->name('schools.index');
+Route::get('/show-school/{school}', [SchoolController::class, 'show'])->name('schools.show');
 Route::get('/create-school', [SchoolController::class, 'create'])->name('schools.create');
 Route::post('/store-school', [SchoolController::class, 'store'])->name('schools.store');
