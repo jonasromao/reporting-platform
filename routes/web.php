@@ -13,7 +13,10 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 // Schools
-Route::get('/index-school', [SchoolController::class, 'index'])->name('schools.index');
-Route::get('/show-school/{school}', [SchoolController::class, 'show'])->name('schools.show');
-Route::get('/create-school', [SchoolController::class, 'create'])->name('schools.create');
-Route::post('/store-school', [SchoolController::class, 'store'])->name('schools.store');
+
+Route::prefix('schools')->group(function () {
+    Route::get('/', [SchoolController::class, 'index'])->name('schools.index');
+    Route::get('/create', [SchoolController::class, 'create'])->name('schools.create');
+    Route::get('/{school}', [SchoolController::class, 'show'])->name('schools.show');    
+    Route::post('/', [SchoolController::class, 'store'])->name('schools.store');
+});
