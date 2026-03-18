@@ -9,9 +9,11 @@ class SchoolController extends Controller
 {
     public function index()
     {
+        // Recuperar os registros no banco de dados
+        $schools = School::orderBy('id', 'DESC')->get();
 
-    // Listar escolas
-    return view('schools.index');
+        // Carregar a view
+        return view('schools.index', ['schools' => $schools]);
     }
 
     public function create()
