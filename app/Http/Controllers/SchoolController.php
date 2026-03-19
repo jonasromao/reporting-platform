@@ -47,7 +47,7 @@ class SchoolController extends Controller
         return redirect()->route('schools.show', ['school' => $school->id])->with('success', 'Escola cadastrada com sucesso!');
         
         } catch(Exception $e){
-            return back()->withInput()->with('success', 'Não foi possível cadastrar a escola');
+            return back()->withInput()->with('error', 'Não foi possível cadastrar a escola');
         }
     }
 
@@ -66,7 +66,7 @@ class SchoolController extends Controller
         return redirect()->route('schools.show', ['school' => $school->id])->with('success', 'Escola editada com sucesso!');
         
         } catch(Exception $e) {
-            return back()->withInput()->with('success', 'Não foi possível editar a escola');
+            return back()->withInput()->with('error', 'Não foi possível editar a escola');
         }
     }
 }

@@ -3,3 +3,9 @@
             {{ session('success') }}
         </p>
     @endif
+
+  @if(session('error'))
+        <p style="color: #F00">
+            {{ session('error') }}
+        </p>
+    @endif
