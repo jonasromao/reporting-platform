@@ -4,6 +4,8 @@
 
     <h2>Editar Escola</h2>
 
+    <x-alert/>
+
     <a href="{{ route('schools.index') }}">Listar</a><br>
     <a href="{{ route('schools.show', ['school' => $school->id]) }}">Visualizar</a><br><br>
 

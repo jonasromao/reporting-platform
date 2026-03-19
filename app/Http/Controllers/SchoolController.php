@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
+use Exception;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
@@ -35,7 +36,8 @@ class SchoolController extends Controller
     public function store(Request $request)
     {
         // Salvar registro no banco de dados
-        //dd($request);
+        
+        try{
         $school = School::create([
             'name' => $request->name,
             'user_id' => 1
@@ -43,6 +45,10 @@ class SchoolController extends Controller
 
         // Redirecionar o usuário, enviar mensagem de sucesso
         return redirect()->route('schools.show', ['school' => $school->id])->with('success', 'Escola cadastrada com sucesso!');
+        
+        } catch(Exception $e){
+            return back()->withInput()->with('success', 'Não foi possível cadastrar a escola');
+        }
     }
 
     public function edit(School $school)
@@ -52,12 +58,15 @@ class SchoolController extends Controller
 
     public function update(Request $request, School $school)
     {
+        try{
         $school->update([
             'name' => $request->name
         ]);
 
         return redirect()->route('schools.show', ['school' => $school->id])->with('success', 'Escola editada com sucesso!');
+        
+        } catch(Exception $e) {
+            return back()->withInput()->with('success', 'Não foi possível editar a escola');
+        }
     }
 }
-
-
