@@ -36,13 +36,27 @@ class SchoolController extends Controller
     {
         // Salvar registro no banco de dados
         //dd($request);
-        School::create([
+        $school = School::create([
             'name' => $request->name,
             'user_id' => 1
         ]);   
 
         // Redirecionar o usuário, enviar mensagem de sucesso
-        return redirect()->route('schools.index')->with('success', 'Escola cadastrada com sucesso!');
+        return redirect()->route('schools.show', ['school' => $school->id])->with('success', 'Escola cadastrada com sucesso!');
+    }
+
+    public function edit(School $school)
+    {
+        return view('schools.edit', ['school' => $school]);
+    }
+
+    public function update(Request $request, School $school)
+    {
+        $school->update([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('schools.show', ['school' => $school->id])->with('success', 'Escola editada com sucesso!');
     }
 }
 

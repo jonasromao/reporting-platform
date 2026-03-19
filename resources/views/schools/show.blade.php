@@ -6,7 +6,8 @@
 
     <x-alert/>
 
-    <a href="{{ route('schools.index') }}">Listar</a><br><br>
+    <a href="{{ route('schools.index') }}">Listar</a><br>
+    <a href="{{ route('schools.edit', ['school' => $school->id]) }}">Editar</a><br><br>
 
         {{-- Imprimir o registro --}}
 

@@ -13,7 +13,8 @@
     @forelse ($schools as $school)
         ID: {{ $school->id }}<br>
         Nome: {{ $school->name }}<br>
-        <a href="{{ route('schools.show', ['school' => $school->id]) }}">Visualizar</a>
+        <a href="{{ route('schools.show', ['school' => $school->id]) }}">Visualizar</a><br>
+        <a href="{{ route('schools.edit', ['school' => $school->id]) }}">Editar</a>
         <hr>
     @empty
         Nenhum registro encontrado!
