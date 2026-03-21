@@ -21,4 +21,5 @@ Route::prefix('schools')->group(function () {
     Route::post('/', [SchoolController::class, 'store'])->name('schools.store');
     Route::get('/{school}/edit', [SchoolController::class, 'edit'])->name('schools.edit');
     Route::put('/{school}/edit', [SchoolController::class, 'update'])->name('schools.update');
+    Route::delete('/{school}', [SchoolController::class, 'destroy'])->name('schools.destroy');
 });

@@ -69,4 +69,17 @@ class SchoolController extends Controller
             return back()->withInput()->with('error', 'Não foi possível editar a escola');
         }
     }
+
+    public function destroy (School $school)
+    {
+        try{
+
+        $school->delete();
+
+        return redirect()->route('schools.index', ['school' => $school->id])->with('success', 'Escola apagada com sucesso!');
+
+        } catch (Exception $e) {
+        return back()->withInput()->with('error', 'Não foi possível apagar a escola!');
+        }
+    }
 }
