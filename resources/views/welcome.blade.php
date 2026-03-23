@@ -1,5 +1,5 @@
-@extends('layouts.admin')
+@extends('layouts.site')
 
 @section('content')    
-<h1>Bem vindo ao Report</h1>
+<h3>Bem vindo ao Report</h3>
 @endsection
