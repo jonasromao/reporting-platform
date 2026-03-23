@@ -17,6 +17,10 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 // Processar dados do login
 Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process');
 
+// Página inicial do administrativo
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 

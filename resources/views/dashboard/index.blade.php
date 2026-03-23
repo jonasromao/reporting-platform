@@ -1,3 +1,9 @@
-<div>
-    <h1>Apresentando o dashboard</h1>
-</div>
+@extends('layouts.admin')
+
+@section('content')
+
+    <h2>Dashboard</h2>
+
+    <x-alert/>
+    
+@endsection 

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\TryCatch;
 
 class LoginController extends Controller
 {
@@ -12,9 +16,29 @@ class LoginController extends Controller
     }
 
 
-    public function loginProcess(Request $request){
+    public function loginProcess(LoginRequest $request){
 
-    dd($request);
+    // Validar dados do usuário
+
+        try{
+
+        $authenticaded = Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+
+            // Verifica se o user foi antenticado
+            if(!$authenticaded){
+
+                return back()->withInput()->with('error', 'E-mail ou senha inválidos!');
+            }
+
+            // Rediciona se encontrar email e senha
+                return redirect()->route('dashboard.index');
+
+            }catch(Exception $e){
+                return back()->withInput()->with('error', 'E-mail ou senha inválidos!');
+        }
 
     }
 }
