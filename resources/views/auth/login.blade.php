@@ -6,7 +6,7 @@
 
 <x-alert/>
 
-    <form action="#" method="POST">
+    <form action="{{ route('login.process') }}" method="POST">
         @csrf
         @method('POST')
         
@@ -21,6 +21,11 @@
     </form>
 
     <a href="#">Esqueceu a senha?</a><br>
-    Precisa de uma conta?<a href="#">Inscreva-se</a> 
+    Precisa de uma conta?<a href="#">Inscreva-se</a><br><br>
+
+    Usuário: teste@teste.com<br>
+    Senha: 12345
+
+
     
 @endsection

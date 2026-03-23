@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SchoolRequest;
 use App\Models\School;
 use Exception;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class SchoolController extends Controller
         return view('schools.create');
     }
 
-    public function store(Request $request)
+    public function store(SchoolRequest $request)
     {
         // Salvar registro no banco de dados
         

@@ -8,12 +8,14 @@ use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
 
 
-
+// Página inicial do site
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 // Tela de login
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+// Processar dados do login
+Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process');
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
