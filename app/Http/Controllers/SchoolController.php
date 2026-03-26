@@ -6,6 +6,7 @@ use App\Http\Requests\SchoolRequest;
 use App\Models\School;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SchoolController extends Controller
 {
@@ -14,6 +15,9 @@ class SchoolController extends Controller
         // Recuperar os registros no banco de dados
         $schools = School::orderBy('id', 'DESC')->get();
 
+        // Salvar log
+        Log::info('Listar as escolas.');
+
         // Carregar a view
         return view('schools.index', ['schools' => $schools]);
     }
@@ -21,6 +25,10 @@ class SchoolController extends Controller
     // visualizar a escola
     public function show (School $school)
     {
+
+     // Salvar log
+        Log::info('Visualizar a escola.', ['school_id' => $school->id]);
+
         // Carregar a view
         return view('schools.show', ['school' => $school]);
     }
@@ -44,10 +52,17 @@ class SchoolController extends Controller
             'user_id' => 1
         ]);   
 
+        // Salvar log
+        Log::info('Escola cadastrada.', ['school_id' => $school->id]);
+
         // Redirecionar o usuário, enviar mensagem de sucesso
         return redirect()->route('schools.show', ['school' => $school->id])->with('success', 'Escola cadastrada com sucesso!');
         
         } catch(Exception $e){
+
+        // Salvar log
+        Log::notice('Escola não cadastrada.', ['error' => $e->getMessage()]);
+
             return back()->withInput()->with('error', 'Não foi possível cadastrar a escola');
         }
     }
@@ -64,9 +79,17 @@ class SchoolController extends Controller
             'name' => $request->name
         ]);
 
+         // Salvar log
+        Log::info('Escola editada com sucesso.', ['school_id' => $school->id]);
+
         return redirect()->route('schools.show', ['school' => $school->id])->with('success', 'Escola editada com sucesso!');
         
         } catch(Exception $e) {
+
+         // Salvar log
+        Log::notice('Não foi possível editar a escola.', ['error' => $e->getMessage()]);
+
+
             return back()->withInput()->with('error', 'Não foi possível editar a escola');
         }
     }
@@ -77,9 +100,17 @@ class SchoolController extends Controller
 
         $school->delete();
 
+         // Salvar log
+        Log::info('Escola removida com sucesso.', ['school_id' => $school->id]);
+
         return redirect()->route('schools.index', ['school' => $school->id])->with('success', 'Escola apagada com sucesso!');
 
         } catch (Exception $e) {
+
+         // Salvar log
+        Log::notice('Não foi possível remover a escola.', ['error' => $e->getMessage()]);
+
+
         return back()->withInput()->with('error', 'Não foi possível apagar a escola!');
         }
     }
