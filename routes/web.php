@@ -17,21 +17,26 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 // Processar dados do login
 Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process');
 
-// Página inicial do administrativo
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+// Grupo de rotas restritas
+Route::group(['middleware' => 'auth'], function (){
 
+    // Página inicial do administrativo
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-// Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-// Schools
+    // Schools
+    Route::prefix('schools')->group(function () {
+        Route::get('/', [SchoolController::class, 'index'])->name('schools.index');
+        Route::get('/create', [SchoolController::class, 'create'])->name('schools.create');
+        Route::get('/{school}', [SchoolController::class, 'show'])->name('schools.show');    
+        Route::post('/', [SchoolController::class, 'store'])->name('schools.store');
+        Route::get('/{school}/edit', [SchoolController::class, 'edit'])->name('schools.edit');
+        Route::put('/{school}/edit', [SchoolController::class, 'update'])->name('schools.update');
+        Route::delete('/{school}', [SchoolController::class, 'destroy'])->name('schools.destroy');
+    });
 
-Route::prefix('schools')->group(function () {
-    Route::get('/', [SchoolController::class, 'index'])->name('schools.index');
-    Route::get('/create', [SchoolController::class, 'create'])->name('schools.create');
-    Route::get('/{school}', [SchoolController::class, 'show'])->name('schools.show');    
-    Route::post('/', [SchoolController::class, 'store'])->name('schools.store');
-    Route::get('/{school}/edit', [SchoolController::class, 'edit'])->name('schools.edit');
-    Route::put('/{school}/edit', [SchoolController::class, 'update'])->name('schools.update');
-    Route::delete('/{school}', [SchoolController::class, 'destroy'])->name('schools.destroy');
 });
+
+
