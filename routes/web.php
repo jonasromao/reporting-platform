@@ -17,6 +17,9 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 // Processar dados do login
 Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process');
 
+// Tela de logout
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
 // Grupo de rotas restritas
 Route::group(['middleware' => 'auth'], function (){
 

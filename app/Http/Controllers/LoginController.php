@@ -41,4 +41,13 @@ class LoginController extends Controller
         }
 
     }
+
+    public function logout(){
+
+    // Deslogar o usuário
+    Auth::logout();
+
+    // Redirecionar o usuário e enviar mensagem de sucesso
+    return redirect()->route('login')->with('success', 'Deslogado com sucesso!');
+    }
 }

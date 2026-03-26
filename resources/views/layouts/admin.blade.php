@@ -8,7 +8,8 @@
 </head>
 <body>
 
-    <a href="{{ route('schools.index')}}">Escolas</a>
+    <a href="{{ route('schools.index')}}">Escolas</a><br>
+    <a href="{{ route('logout')}}">Sair</a>
 
     @yield('content')
     
